@@ -277,17 +277,10 @@ export default function StudentDashboard() {
                             return null;
                           })()}
                         </div>
+                        {/* Using the backend's calculated percentage) */}
                         <div className="text-right">
                           <p className="text-2xl sm:text-3xl font-bold text-primary">
-                            {Math.round(
-                              (enrollment.progress?.completedLessons?.length /
-                                stats?.courseData?.syllabus?.reduce(
-                                  (acc, m) => acc + (m.lessons?.length || 0),
-                                  0,
-                                )) *
-                                100,
-                            )}
-                            %
+                            {enrollment.progress?.percent || 0}%
                           </p>
                         </div>
                       </div>

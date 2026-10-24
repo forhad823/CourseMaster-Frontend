@@ -5,7 +5,7 @@ export default function CoursesFilters({
     tags, setTags,
     onSearchSubmit
 }) {
-    return (
+    return ( 
         <div className="space-y-3">
             {/* Search */}
             <form onSubmit={onSearchSubmit} className="join w-full md:w-auto">

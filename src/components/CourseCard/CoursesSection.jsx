@@ -40,6 +40,7 @@ export default function CoursesSection() {
             setTotalPages(res.data.totalPages || 1);
         } catch (err) {
             setError("Failed to load courses");
+            console.log(err);
         } finally {
             setLoading(false);
         }

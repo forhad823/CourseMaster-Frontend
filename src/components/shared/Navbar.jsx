@@ -171,37 +171,10 @@ export default function Navbar() {
 
             <ul
               tabIndex={0}
-              className="
-                menu menu-sm dropdown-content mt-3 p-3 shadow
-                bg-base-100 rounded-box w-56 border border-base-300
-                items-center text-center max-h-32 overflow-hidden
-              "
+              className="menu menu-sm dropdown-content mt-3 p-3 shadow
+                      bg-base-100 rounded-box w-56 border border-base-300
+                      items-center text-center max-h-[80vh] overflow-y-auto"
             >
-              <li>
-                <NavLink className={navLinkClass} to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className={navLinkClass} to="/courses">
-                  Courses
-                </NavLink>
-              </li>
-
-              {/* ✅ Dashboard only when logged in */}
-              {token && me && (
-                <li>
-                  <NavLink
-                    className={navLinkClass}
-                    to={me.role === "admin" ? "/admin" : "/student"}
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-              )}
-
-              <div className="my-2 w-full border-t border-base-300" />
-
               {!token ? (
                 <>
                   <li className="w-full">
@@ -230,17 +203,7 @@ export default function Navbar() {
 
                   <div className="my-2 w-full border-t border-base-300" />
 
-                  {/* ✅ Dashboard only when logged in */}
-                  <li className="w-full">
-                    <Link
-                      to={me?.role === "admin" ? "/admin" : "/student"}
-                      className="w-full"
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
-
-                  <li className="w-full">
+                  <li className="w-full flex items-center">
                     <Link to="/profile">Profile</Link>
                   </li>
                   <li className="w-full">
@@ -253,6 +216,31 @@ export default function Navbar() {
                   </li>
                 </>
               )}
+
+              <li>
+                <NavLink className={navLinkClass} to="/">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={navLinkClass} to="/courses">
+                  Courses
+                </NavLink>
+              </li>
+
+              {/* ✅ Dashboard only when logged in */}
+              {token && me && (
+                <li>
+                  <NavLink
+                    className={navLinkClass}
+                    to={me.role === "admin" ? "/admin" : "/student"}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+
+              <div className="my-2 w-full border-t border-base-300" />
             </ul>
           </div>
         </div>

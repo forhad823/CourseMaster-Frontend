@@ -2,7 +2,7 @@ import Logo from "./Logo";
 
 export default function Footer() {
     return (
-        <footer className="bg-gradient-to-br from-base-200 to-base-300 border-t-2 border-primary/20 mt-16">
+        <footer className="bg-linear-to-br from-base-200 to-base-300 border-t-2 border-primary/20 mt-16">
             <div className="max-w-6xl mx-auto px-4 py-12 grid gap-8 md:grid-cols-3">
                 {/* Brand */}
                 <div className="space-y-3">

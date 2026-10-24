@@ -21,6 +21,7 @@ export default function CoursesPreview() {
                 setCourses(res.data.courses || []);
             } catch (err) {
                 setError("Failed to load courses");
+                console.log(err);
             } finally {
                 setLoading(false);
             }
