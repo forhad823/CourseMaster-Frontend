@@ -126,7 +126,7 @@ export default function CoursePlayer() {
         <div className="lg:col-span-2 space-y-3 sm:space-y-4">
           <div className="card bg-base-100 shadow">
             <div className="card-body p-3 sm:p-6">
-              <h2 className="card-title text-lg sm:text-xl md:text-2xl break-words">
+              <h2 className="card-title text-lg sm:text-xl md:text-2xl wrap-break-word">
                 {currentCourse.title}
               </h2>
               <div className="flex justify-between items-center mt-2">
@@ -149,9 +149,9 @@ export default function CoursePlayer() {
                 <h3 className="card-title text-base sm:text-lg md:text-xl break-words">
                   {lesson.title}
                 </h3>
-                <div className="bg-base-300 rounded overflow-hidden mt-2 sm:mt-4">
+                <div className="bg-base-300 rounded overflow-hidden mt-2 sm:mt-4 w-full aspect-video">
                   <iframe
-                    style={{ height: "700px", width: "300px" }}
+                    className="w-full h-full" // FIXED: Responsive 16:9 aspect ratio
                     src={convertToEmbedUrl(lesson.videoUrl)}
                     title={lesson.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -163,13 +163,22 @@ export default function CoursePlayer() {
                 <button
                   onClick={handleMarkComplete}
                   disabled={
-                    !!enrollment?.progress?.completedLessons?.includes(lesson)
+                    // FIXED: Check for lesson._id, not the whole lesson object
+                    !!enrollment?.progress?.completedLessons?.includes(
+                      lesson._id,
+                    )
                   }
-                  className={`btn btn-sm sm:btn-md ${enrollment?.progress?.completedLessons?.includes(lesson) ? "btn-disabled" : "btn-success"} mt-3 sm:mt-4 w-full sm:w-auto`}
+                  className={`btn btn-sm sm:btn-md ${enrollment?.progress?.completedLessons?.includes(lesson._id) ? "btn-disabled" : "btn-success"} mt-3 sm:mt-4 w-full sm:w-auto`}
                 >
-                  {enrollment?.progress?.completedLessons?.includes(lesson)
-                    ? "Completed ✓"
-                    : "✓ Mark as Complete"}
+                  {enrollment?.progress?.completedLessons?.includes(
+                    lesson._id,
+                  ) ? (
+                    <span className="font-bold text-green-400">
+                      Completed ✓
+                    </span>
+                  ) : (
+                    "✓ Mark as Complete"
+                  )}
                 </button>
               </div>
             </div>
